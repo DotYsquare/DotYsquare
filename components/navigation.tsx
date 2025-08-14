@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 
 export default function Navigation() {
@@ -25,8 +26,15 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <div className="font-heading font-black text-2xl text-black">DotYsquare</div>
+          <Link href="/" className="flex items-center space-x-2">
+            <Image
+              src="/DotYsquare_logo.png" // Place your logo in public/logo.png
+              alt="DotYsquare Logo"
+              width={40}
+              height={40}
+              priority
+            />
+            <span className="font-heading font-black text-2xl text-black">DotYsquare</span>
           </Link>
 
           {/* Desktop Navigation */}

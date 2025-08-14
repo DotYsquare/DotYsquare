@@ -40,7 +40,7 @@ const socialLinks = [
 
 const contactInfo = [
   { icon: Mail, text: "dotysquare@gmail.com" },
-  { icon: Phone, text: "+91 9785647182" },
+  { icon: Phone, text: "+91 8302030832 , +91 9785647182" },
   { icon: MapPin, text: "Damodar Building JNU, New Delhi" },
 ]
 

@@ -18,10 +18,9 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "DOTYSQUARE - Innovative Technology Solutions",
+  title: "DotYsquare - Software, Cloud, and IT Solutions",
   description:
     "Your partner in software, cloud, and IT solutions. Innovating with technology to drive your business forward.",
-  generator: "v0.app",
 }
 
 export default function RootLayout({
