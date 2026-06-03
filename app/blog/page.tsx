@@ -128,15 +128,15 @@ export default function BlogPage() {
   const recentPosts = blogPosts.slice(0, 3)
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-black text-white py-20">
+      <section className="bg-gradient-to-b from-[#0a1322] via-[#0c1c33] to-[#0a1322] text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Badge className="bg-red-600 text-white mb-6">Insights & Updates</Badge>
+          <Badge className="bg-brand/15 text-brand border border-brand/30 mb-6">Insights & Updates</Badge>
           <h1 className="font-heading font-black text-4xl lg:text-6xl mb-6">
-            Blog & <span className="text-red-600">News</span>
+            Blog & <span className="text-brand">News</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Stay updated with the latest technology insights, company news, and expert tutorials from the DOTYSQUARE
@@ -146,16 +146,16 @@ export default function BlogPage() {
       </section>
 
       {/* Search and Filters */}
-      <section className="py-8 bg-gray-50 border-b">
+      <section className="py-8 bg-muted/30 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Search articles..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 border-gray-300"
+                className="pl-10 border-input"
               />
             </div>
             <div className="flex gap-2">
@@ -167,8 +167,8 @@ export default function BlogPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={
                     selectedCategory === category
-                      ? "bg-red-600 hover:bg-red-700 text-white"
-                      : "border-gray-300 text-gray-700 hover:border-red-600 hover:text-red-600 bg-white"
+                      ? "bg-brand hover:bg-brand-dark text-brand-foreground"
+                      : "border-input text-foreground/80 hover:border-brand hover:text-brand"
                   }
                 >
                   {category}
@@ -181,15 +181,15 @@ export default function BlogPage() {
 
       {/* Featured Posts */}
       {selectedCategory === "All" && searchQuery === "" && (
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-2 mb-8">
-              <TrendingUp className="h-6 w-6 text-red-600" />
-              <h2 className="font-heading font-bold text-2xl text-black">Featured Articles</h2>
+              <TrendingUp className="h-6 w-6 text-brand" />
+              <h2 className="font-heading font-bold text-2xl text-foreground">Featured Articles</h2>
             </div>
             <div className="grid lg:grid-cols-2 gap-8">
               {featuredPosts.map((post) => (
-                <Card key={post.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300">
+                <Card key={post.id} className="group overflow-hidden border-border hover:border-brand/40 transition-all hover-lift">
                   <div className="aspect-video overflow-hidden">
                     <img
                       src={`/placeholder.svg?height=300&width=500&query=${post.image}`}
@@ -198,12 +198,12 @@ export default function BlogPage() {
                     />
                   </div>
                   <CardContent className="p-6">
-                    <Badge className="bg-red-100 text-red-600 mb-3">{post.category}</Badge>
-                    <h3 className="font-heading font-bold text-xl mb-3 group-hover:text-red-600 transition-colors">
+                    <Badge className="bg-brand/10 text-brand border-brand/20 mb-3">{post.category}</Badge>
+                    <h3 className="font-heading font-bold text-xl mb-3 group-hover:text-brand transition-colors">
                       {post.title}
                     </h3>
-                    <p className="text-gray-600 mb-4 leading-relaxed">{post.excerpt}</p>
-                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                    <p className="text-muted-foreground mb-4 leading-relaxed">{post.excerpt}</p>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-1">
                           <User className="h-4 w-4" />
@@ -220,7 +220,7 @@ export default function BlogPage() {
                       </div>
                     </div>
                     <Link href={`/blog/${post.slug}`}>
-                      <Button className="bg-red-600 hover:bg-red-700 text-white group">
+                      <Button className="bg-brand hover:bg-brand-dark text-brand-foreground group">
                         Read More
                         <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </Button>
@@ -234,19 +234,19 @@ export default function BlogPage() {
       )}
 
       {/* All Posts */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="font-heading font-bold text-2xl text-black">
+            <h2 className="font-heading font-bold text-2xl text-foreground">
               {selectedCategory === "All" ? "Latest Articles" : selectedCategory}
             </h2>
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               Showing {filteredPosts.length} of {blogPosts.length} articles
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post) => (
-              <Card key={post.id} className="group overflow-hidden hover:shadow-lg transition-shadow">
+              <Card key={post.id} className="group overflow-hidden border-border hover:border-brand/40 transition-all hover-lift">
                 <div className="aspect-video overflow-hidden">
                   <img
                     src={`/placeholder.svg?height=250&width=400&query=${post.image}`}
@@ -255,19 +255,19 @@ export default function BlogPage() {
                   />
                 </div>
                 <CardContent className="p-6">
-                  <Badge className="bg-red-100 text-red-600 mb-3">{post.category}</Badge>
-                  <h3 className="font-heading font-bold text-lg mb-2 group-hover:text-red-600 transition-colors line-clamp-2">
+                  <Badge className="bg-brand/10 text-brand border-brand/20 mb-3">{post.category}</Badge>
+                  <h3 className="font-heading font-bold text-lg mb-2 group-hover:text-brand transition-colors line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">{post.excerpt}</p>
-                  <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                  <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{post.excerpt}</p>
+                  <div className="flex items-center justify-between text-xs text-muted-foreground mb-4">
                     <span>{post.author}</span>
                     <span>{new Date(post.publishDate).toLocaleDateString()}</span>
                     <span>{post.readTime}</span>
                   </div>
                   <div className="flex flex-wrap gap-1 mb-4">
                     {post.tags.slice(0, 2).map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-xs border-gray-300 text-gray-600">
+                      <Badge key={tag} variant="outline" className="text-xs border-border text-muted-foreground">
                         {tag}
                       </Badge>
                     ))}
@@ -276,7 +276,7 @@ export default function BlogPage() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="w-full border-red-600 text-red-600 hover:bg-red-600 hover:text-white bg-transparent"
+                      className="w-full border-brand text-brand hover:bg-brand hover:text-brand-foreground bg-transparent"
                     >
                       Read Article
                     </Button>
@@ -289,7 +289,7 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter Signup */}
-      <section className="py-16 bg-black text-white">
+      <section className="py-16 bg-gradient-to-b from-[#0a1322] via-[#0c1c33] to-[#0a1322] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-heading font-bold text-3xl lg:text-4xl mb-4">Stay Updated</h2>
           <p className="text-xl mb-8 text-gray-300">
@@ -297,7 +297,7 @@ export default function BlogPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <Input placeholder="Enter your email" className="flex-1 bg-white text-black border-white" />
-            <Button className="bg-red-600 hover:bg-red-700 text-white">Subscribe</Button>
+            <Button className="bg-brand hover:bg-brand-dark text-brand-foreground">Subscribe</Button>
           </div>
         </div>
       </section>

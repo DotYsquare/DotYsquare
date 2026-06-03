@@ -124,15 +124,15 @@ const benefits = [
 
 export default function CareersPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-black text-white py-20">
+      <section className="bg-gradient-to-b from-[#0a1322] via-[#0c1c33] to-[#0a1322] text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Badge className="bg-red-600 text-white mb-6">Join Our Team</Badge>
+          <Badge className="bg-brand/15 text-brand border border-brand/30 mb-6">Join Our Team</Badge>
           <h1 className="font-heading font-black text-4xl lg:text-6xl mb-6">
-            Build the <span className="text-red-600">Future</span> with Us
+            Build the <span className="text-brand">Future</span> with Us
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Join a team of passionate technologists who are shaping the future of digital innovation. We're always
@@ -142,24 +142,24 @@ export default function CareersPage() {
       </section>
 
       {/* Why Work at DOTYSQUARE */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-heading font-bold text-3xl lg:text-4xl text-black mb-4">Why Work at DOTYSQUARE?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="font-heading font-bold text-3xl lg:text-4xl text-foreground mb-4">Why Work at DOTYSQUARE?</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               We believe great technology comes from great people. Join our culture of innovation, collaboration, and
               continuous growth.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {benefits.map((benefit, index) => (
-              <Card key={index} className="border-0 shadow-lg text-center hover:shadow-xl transition-shadow">
+              <Card key={index} className="border-border hover:border-brand/40 transition-all hover-lift shadow-lg text-center">
                 <CardContent className="p-8">
-                  <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <benefit.icon className="h-8 w-8 text-red-600" />
+                  <div className="w-16 h-16 bg-brand/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <benefit.icon className="h-8 w-8 text-brand" />
                   </div>
                   <h3 className="font-heading font-bold text-xl mb-4">{benefit.title}</h3>
-                  <p className="text-gray-600">{benefit.description}</p>
+                  <p className="text-muted-foreground">{benefit.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -168,24 +168,24 @@ export default function CareersPage() {
       </section>
 
       {/* Open Positions */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-heading font-bold text-3xl lg:text-4xl text-black mb-4">Open Positions</h2>
-            <p className="text-xl text-gray-600">Join our growing team and make an impact from day one</p>
+            <h2 className="font-heading font-bold text-3xl lg:text-4xl text-foreground mb-4">Open Positions</h2>
+            <p className="text-xl text-muted-foreground">Join our growing team and make an impact from day one</p>
           </div>
           <div className="space-y-6">
             {openPositions.map((position) => (
-              <Card key={position.id} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <Card key={position.id} className="border-border hover:border-brand/40 transition-all hover-lift shadow-lg">
                 <CardContent className="p-8">
                   <div className="grid lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2">
                       <div className="flex items-center gap-3 mb-4">
                         <h3 className="font-heading font-bold text-2xl">{position.title}</h3>
-                        <Badge className="bg-red-100 text-red-600">{position.department}</Badge>
+                        <Badge className="bg-brand/10 text-brand border-brand/20">{position.department}</Badge>
                       </div>
-                      <p className="text-gray-600 mb-4 leading-relaxed">{position.description}</p>
-                      <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-4">
+                      <p className="text-muted-foreground mb-4 leading-relaxed">{position.description}</p>
+                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
                         <div className="flex items-center gap-1">
                           <MapPin className="h-4 w-4" />
                           {position.location}
@@ -201,16 +201,16 @@ export default function CareersPage() {
                       </div>
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
-                          <h4 className="font-semibold text-gray-700 mb-2">Requirements:</h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
+                          <h4 className="font-semibold text-foreground/80 mb-2">Requirements:</h4>
+                          <ul className="text-sm text-muted-foreground space-y-1">
                             {position.requirements.map((req, idx) => (
                               <li key={idx}>• {req}</li>
                             ))}
                           </ul>
                         </div>
                         <div>
-                          <h4 className="font-semibold text-gray-700 mb-2">Benefits:</h4>
-                          <ul className="text-sm text-gray-600 space-y-1">
+                          <h4 className="font-semibold text-foreground/80 mb-2">Benefits:</h4>
+                          <ul className="text-sm text-muted-foreground space-y-1">
                             {position.benefits.map((benefit, idx) => (
                               <li key={idx}>• {benefit}</li>
                             ))}
@@ -219,13 +219,13 @@ export default function CareersPage() {
                       </div>
                     </div>
                     <div className="flex flex-col justify-center">
-                      <Button className="bg-red-600 hover:bg-red-700 text-white mb-4 group">
+                      <Button className="bg-brand hover:bg-brand-dark text-brand-foreground mb-4 group">
                         Apply Now
                         <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </Button>
                       <Button
                         variant="outline"
-                        className="border-gray-300 text-gray-700 hover:border-red-600 hover:text-red-600 bg-transparent"
+                        className="border-border text-foreground/80 hover:border-brand hover:text-brand bg-transparent"
                       >
                         Learn More
                       </Button>
@@ -239,20 +239,20 @@ export default function CareersPage() {
       </section>
 
       {/* Internship Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-heading font-bold text-3xl lg:text-4xl text-black mb-4">Internship Opportunities</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="font-heading font-bold text-3xl lg:text-4xl text-foreground mb-4">Internship Opportunities</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Start your career with hands-on experience working on real projects alongside industry professionals.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {internshipPositions.map((internship, index) => (
-              <Card key={index} className="border-0 shadow-lg text-center hover:shadow-xl transition-shadow">
+              <Card key={index} className="border-border hover:border-brand/40 transition-all hover-lift shadow-lg text-center">
                 <CardContent className="p-8">
                   <h3 className="font-heading font-bold text-xl mb-4">{internship.title}</h3>
-                  <div className="space-y-2 mb-6 text-sm text-gray-600">
+                  <div className="space-y-2 mb-6 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center gap-1">
                       <Clock className="h-4 w-4" />
                       {internship.duration}
@@ -262,8 +262,8 @@ export default function CareersPage() {
                       {internship.location}
                     </div>
                   </div>
-                  <p className="text-gray-600 mb-6">{internship.description}</p>
-                  <Button className="bg-red-600 hover:bg-red-700 text-white w-full">Apply for Internship</Button>
+                  <p className="text-muted-foreground mb-6">{internship.description}</p>
+                  <Button className="bg-brand hover:bg-brand-dark text-brand-foreground w-full">Apply for Internship</Button>
                 </CardContent>
               </Card>
             ))}
@@ -272,7 +272,7 @@ export default function CareersPage() {
       </section>
 
       {/* Application Form */}
-      <section className="py-16 bg-black text-white">
+      <section className="py-16 bg-gradient-to-b from-[#0a1322] via-[#0c1c33] to-[#0a1322] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-heading font-bold text-3xl lg:text-4xl mb-4">Don't See the Right Role?</h2>
@@ -280,27 +280,27 @@ export default function CareersPage() {
               We're always looking for exceptional talent. Send us your resume and tell us how you'd like to contribute.
             </p>
           </div>
-          <Card className="border-0 bg-white">
+          <Card className="border-border">
             <CardContent className="p-8">
               <form className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
-                    <Input placeholder="Your full name" className="border-gray-300" />
+                    <label className="block text-sm font-semibold text-foreground/80 mb-2">Full Name</label>
+                    <Input placeholder="Your full name" className="border-input" />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
-                    <Input type="email" placeholder="your@email.com" className="border-gray-300" />
+                    <label className="block text-sm font-semibold text-foreground/80 mb-2">Email Address</label>
+                    <Input type="email" placeholder="your@email.com" className="border-input" />
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
-                    <Input placeholder="Your phone number" className="border-gray-300" />
+                    <label className="block text-sm font-semibold text-foreground/80 mb-2">Phone Number</label>
+                    <Input placeholder="Your phone number" className="border-input" />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Position of Interest</label>
-                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent">
+                    <label className="block text-sm font-semibold text-foreground/80 mb-2">Position of Interest</label>
+                    <select className="w-full p-3 border border-input rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent">
                       <option>Select a position</option>
                       <option>Senior React Developer</option>
                       <option>Cloud Solutions Architect</option>
@@ -312,22 +312,22 @@ export default function CareersPage() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Cover Letter</label>
+                  <label className="block text-sm font-semibold text-foreground/80 mb-2">Cover Letter</label>
                   <Textarea
                     placeholder="Tell us about yourself, your experience, and why you'd like to join DOTYSQUARE..."
-                    className="border-gray-300 min-h-[120px]"
+                    className="border-input min-h-[120px]"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Resume</label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                    <p className="text-gray-600">Drop your resume here or click to upload</p>
-                    <Button variant="outline" className="mt-2 border-gray-300 text-gray-700 bg-transparent">
+                  <label className="block text-sm font-semibold text-foreground/80 mb-2">Resume</label>
+                  <div className="border-2 border-dashed border-border rounded-lg p-6 text-center">
+                    <p className="text-muted-foreground">Drop your resume here or click to upload</p>
+                    <Button variant="outline" className="mt-2 border-border text-foreground/80 bg-transparent">
                       Choose File
                     </Button>
                   </div>
                 </div>
-                <Button size="lg" className="w-full bg-red-600 hover:bg-red-700 text-white">
+                <Button size="lg" className="w-full bg-brand hover:bg-brand-dark text-brand-foreground">
                   Submit Application
                 </Button>
               </form>

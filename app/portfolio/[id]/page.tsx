@@ -302,15 +302,16 @@ const caseStudies = {
   },
 }
 
-export default function CaseStudyPage({ params }: { params: { id: string } }) {
-  const caseStudy = caseStudies[params.id as keyof typeof caseStudies]
+export default async function CaseStudyPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const caseStudy = caseStudies[id as keyof typeof caseStudies]
 
   if (!caseStudy) {
     notFound()
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navigation />
 
       {/* Back Button */}
@@ -318,7 +319,7 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
         <Link href="/portfolio">
           <Button
             variant="outline"
-            className="border-gray-300 text-gray-700 hover:border-red-600 hover:text-red-600 bg-transparent"
+            className="border-border text-foreground/80 hover:border-brand hover:text-brand bg-transparent"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Portfolio
@@ -327,12 +328,12 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
       </div>
 
       {/* Hero Section */}
-      <section className="py-16 bg-black text-white">
+      <section className="py-16 bg-gradient-to-b from-[#0a1322] via-[#0c1c33] to-[#0a1322] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Badge className="bg-red-600 text-white">{caseStudy.category}</Badge>
+                <Badge className="bg-brand/15 text-brand border border-brand/30">{caseStudy.category}</Badge>
                 <Badge variant="outline" className="border-white text-white">
                   {caseStudy.industry}
                 </Badge>
@@ -369,13 +370,13 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
       </section>
 
       {/* Technologies */}
-      <section className="py-8 bg-gray-50">
+      <section className="py-8 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h3 className="font-semibold text-gray-700 mb-4">Technologies Used</h3>
+            <h3 className="font-semibold text-foreground/80 mb-4">Technologies Used</h3>
             <div className="flex flex-wrap justify-center gap-2">
               {caseStudy.technologies.map((tech) => (
-                <Badge key={tech} className="bg-white text-gray-700 border border-gray-300">
+                <Badge key={tech} className="bg-muted text-foreground/80 border border-border">
                   {tech}
                 </Badge>
               ))}
@@ -385,17 +386,17 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
       </section>
 
       {/* Challenge */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="font-heading font-bold text-3xl text-black mb-6">{caseStudy.challenge.title}</h2>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">{caseStudy.challenge.description}</p>
+              <h2 className="font-heading font-bold text-3xl text-foreground mb-6">{caseStudy.challenge.title}</h2>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">{caseStudy.challenge.description}</p>
               <div className="space-y-3">
                 {caseStudy.challenge.problems.map((problem, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-red-600 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-700">{problem}</span>
+                    <div className="w-2 h-2 bg-brand rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-foreground/80">{problem}</span>
                   </div>
                 ))}
               </div>
@@ -406,8 +407,8 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                   <h3 className="font-heading font-bold text-xl mb-4">Key Challenges</h3>
                   <div className="space-y-4">
                     {caseStudy.challenge.problems.slice(0, 3).map((problem, index) => (
-                      <div key={index} className="p-4 bg-red-50 rounded-lg">
-                        <p className="text-red-800 font-medium">{problem}</p>
+                      <div key={index} className="p-4 bg-brand/10 rounded-lg">
+                        <p className="text-brand font-medium">{problem}</p>
                       </div>
                     ))}
                   </div>
@@ -419,11 +420,11 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
       </section>
 
       {/* Solution */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-heading font-bold text-3xl lg:text-4xl text-black mb-4">{caseStudy.solution.title}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{caseStudy.solution.description}</p>
+            <h2 className="font-heading font-bold text-3xl lg:text-4xl text-foreground mb-4">{caseStudy.solution.title}</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">{caseStudy.solution.description}</p>
           </div>
           <div className="grid lg:grid-cols-2 gap-12">
             <Card className="border-0 shadow-lg">
@@ -432,10 +433,10 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                 <div className="space-y-4">
                   {caseStudy.solution.approach.map((step, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
+                      <div className="w-6 h-6 bg-brand text-brand-foreground rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
                         {index + 1}
                       </div>
-                      <span className="text-gray-700">{step}</span>
+                      <span className="text-foreground/80">{step}</span>
                     </div>
                   ))}
                 </div>
@@ -447,8 +448,8 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                 <div className="space-y-3">
                   {caseStudy.solution.features.map((feature, index) => (
                     <div key={index} className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-red-600 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
+                      <CheckCircle className="h-5 w-5 text-brand flex-shrink-0" />
+                      <span className="text-foreground/80">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -459,19 +460,19 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
       </section>
 
       {/* Results */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-heading font-bold text-3xl lg:text-4xl text-black mb-4">{caseStudy.results.title}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{caseStudy.results.description}</p>
+            <h2 className="font-heading font-bold text-3xl lg:text-4xl text-foreground mb-4">{caseStudy.results.title}</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">{caseStudy.results.description}</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {caseStudy.results.metrics.map((metric, index) => (
               <Card key={index} className="border-0 shadow-lg text-center">
                 <CardContent className="p-6">
-                  <metric.icon className="h-8 w-8 text-red-600 mx-auto mb-4" />
-                  <div className="font-heading font-black text-3xl text-red-600 mb-2">{metric.value}</div>
-                  <div className="text-gray-600 font-medium">{metric.label}</div>
+                  <metric.icon className="h-8 w-8 text-brand mx-auto mb-4" />
+                  <div className="font-heading font-black text-3xl text-brand mb-2">{metric.value}</div>
+                  <div className="text-muted-foreground font-medium">{metric.label}</div>
                 </CardContent>
               </Card>
             ))}
@@ -479,8 +480,8 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudy.results.outcomes.map((outcome, index) => (
               <div key={index} className="flex items-start gap-3">
-                <CheckCircle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                <span className="text-gray-700 text-lg">{outcome}</span>
+                <CheckCircle className="h-6 w-6 text-brand flex-shrink-0 mt-1" />
+                <span className="text-foreground/80 text-lg">{outcome}</span>
               </div>
             ))}
           </div>
@@ -488,9 +489,9 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
       </section>
 
       {/* Gallery */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-heading font-bold text-3xl text-center text-black mb-12">Project Gallery</h2>
+          <h2 className="font-heading font-bold text-3xl text-center text-foreground mb-12">Project Gallery</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {caseStudy.gallery.map((image, index) => (
               <div key={index} className="aspect-video overflow-hidden rounded-lg shadow-lg">
@@ -506,7 +507,7 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
       </section>
 
       {/* Testimonial */}
-      <section className="py-16 bg-black text-white">
+      <section className="py-16 bg-gradient-to-b from-[#0a1322] via-[#0c1c33] to-[#0a1322] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="mb-8">
             <img
@@ -519,28 +520,28 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
             </blockquote>
             <div>
               <div className="font-heading font-bold text-xl">{caseStudy.testimonial.author}</div>
-              <div className="text-red-400">{caseStudy.testimonial.role}</div>
+              <div className="text-brand">{caseStudy.testimonial.role}</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-red-600 text-white">
+      <section className="py-16 bg-gradient-to-br from-brand to-brand-darker text-brand-foreground">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-heading font-bold text-3xl lg:text-4xl mb-4">Ready for Similar Results?</h2>
-          <p className="text-xl mb-8 text-red-100">
+          <p className="text-xl mb-8 text-brand-foreground/80">
             Let's discuss how we can help transform your business with innovative technology solutions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100">
+            <Button size="lg" className="bg-slate-900 text-white hover:bg-slate-800">
               Start Your Project
             </Button>
             <Link href="/portfolio">
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-red-600 bg-transparent"
+                className="border-brand-foreground/30 text-brand-foreground hover:bg-brand-foreground/10 bg-transparent"
               >
                 View More Cases
               </Button>

@@ -4,74 +4,93 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* Brand palette derived from the DotYsquare logo */
+  --brand: #0cc0df;            /* signature cyan (logo background) */
+  --brand-dark: #0aa3bd;       /* darker cyan for hovers */
+  --brand-darker: #087e92;     /* deep teal for gradients / text on light */
+  --brand-light: #5fd6e8;
+  --brand-soft: #e5f8fc;       /* very light cyan wash */
+  --brand-foreground: #04323b; /* near-black teal for text on cyan */
+  --accent2: #ff3131;          /* the red "²" accent from the logo */
+  --accent2-dark: #e01f1f;
+
   --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --foreground: oklch(0.16 0.01 240);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.16 0.01 240);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
+  --popover-foreground: oklch(0.16 0.01 240);
+  --primary: #0cc0df;
+  --primary-foreground: #04323b;
+  --secondary: oklch(0.97 0.005 230);
+  --secondary-foreground: oklch(0.2 0.02 240);
+  --muted: oklch(0.97 0.005 230);
+  --muted-foreground: oklch(0.5 0.015 240);
+  --accent: oklch(0.95 0.03 210);
+  --accent-foreground: oklch(0.2 0.02 240);
+  --destructive: oklch(0.62 0.24 26);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.91 0.008 230);
+  --input: oklch(0.91 0.008 230);
+  --ring: #0cc0df;
+  --chart-1: #0cc0df;
+  --chart-2: #087e92;
+  --chart-3: #ff3131;
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.985 0.003 230);
+  --sidebar-foreground: oklch(0.16 0.01 240);
+  --sidebar-primary: #0cc0df;
+  --sidebar-primary-foreground: #04323b;
+  --sidebar-accent: oklch(0.95 0.03 210);
+  --sidebar-accent-foreground: oklch(0.2 0.02 240);
+  --sidebar-border: oklch(0.91 0.008 230);
+  --sidebar-ring: #0cc0df;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
+  --brand: #19cde8;
+  --brand-dark: #0cc0df;
+  --brand-darker: #0aa3bd;
+  --brand-light: #6fe0f2;
+  --brand-soft: #0e3a44;
+  --brand-foreground: #04222a;
+  --accent2: #ff4d4d;
+  --accent2-dark: #ff3131;
+
+  --background: oklch(0.17 0.022 245); /* deep navy */
+  --foreground: oklch(0.97 0.008 230);
+  --card: oklch(0.21 0.025 245);
+  --card-foreground: oklch(0.97 0.008 230);
+  --popover: oklch(0.21 0.025 245);
+  --popover-foreground: oklch(0.97 0.008 230);
+  --primary: #19cde8;
+  --primary-foreground: #04222a;
+  --secondary: oklch(0.27 0.025 245);
+  --secondary-foreground: oklch(0.97 0.008 230);
+  --muted: oklch(0.25 0.022 245);
+  --muted-foreground: oklch(0.72 0.02 235);
+  --accent: oklch(0.3 0.04 230);
+  --accent-foreground: oklch(0.97 0.008 230);
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.3 0.022 245);
+  --input: oklch(0.3 0.022 245);
+  --ring: #19cde8;
+  --chart-1: #19cde8;
+  --chart-2: #6fe0f2;
+  --chart-3: #ff4d4d;
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --sidebar: oklch(0.21 0.025 245);
+  --sidebar-foreground: oklch(0.97 0.008 230);
+  --sidebar-primary: #19cde8;
+  --sidebar-primary-foreground: #04222a;
+  --sidebar-accent: oklch(0.3 0.04 230);
+  --sidebar-accent-foreground: oklch(0.97 0.008 230);
+  --sidebar-border: oklch(0.3 0.022 245);
+  --sidebar-ring: #19cde8;
 }
 
 @theme inline {
@@ -112,6 +131,16 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
+  /* Brand colors (from the DotYsquare logo) — enables bg-brand, text-brand, etc. */
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-darker: var(--brand-darker);
+  --color-brand-light: var(--brand-light);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-accent2: var(--accent2);
+  --color-accent2-dark: var(--accent2-dark);
+
   /* Added custom font families */
   --font-sans: var(--font-open-sans);
   --font-heading: var(--font-montserrat);
@@ -133,13 +162,36 @@
 
 /* Added premium animation styles and effects */
 @layer utilities {
-  /* Gradient Text Effect */
+  /* Gradient Text Effect — brand cyan */
   .gradient-text {
-    background: linear-gradient(135deg, #dc2626, #ef4444, #f87171);
+    background: linear-gradient(135deg, #0cc0df, #19cde8, #6fe0f2);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: gradient-shift 3s ease-in-out infinite;
+    animation: gradient-shift 4s ease-in-out infinite;
+  }
+
+  /* Red "²" accent gradient (used sparingly, echoes the logo) */
+  .gradient-text-accent {
+    background: linear-gradient(135deg, #ff3131, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Subtle dotted grid background for hero / dark sections */
+  .grid-bg {
+    background-image: radial-gradient(circle, rgba(12, 192, 223, 0.12) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* Cyan glow for buttons / cards */
+  .brand-glow {
+    box-shadow: 0 10px 40px -10px rgba(12, 192, 223, 0.55);
+  }
+  .brand-glow-strong {
+    box-shadow: 0 0 0 1px rgba(12, 192, 223, 0.4), 0 12px 50px -8px rgba(12, 192, 223, 0.65);
   }
 
   @keyframes gradient-shift {
@@ -253,7 +305,7 @@
 
   .hover-lift:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 45px -12px rgba(12, 192, 223, 0.35);
   }
 
   .pulse-on-hover:hover {
@@ -310,21 +362,24 @@
     scroll-behavior: smooth;
   }
 
-  /* Custom Scrollbar */
+  /* Custom Scrollbar — brand cyan */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #dc2626;
-    border-radius: 4px;
+    background: #0cc0df;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: content-box;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #b91c1c;
+    background: #0aa3bd;
+    background-clip: content-box;
   }
 }

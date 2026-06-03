@@ -132,15 +132,16 @@ const relatedPosts = [
   },
 ]
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = blogPosts[params.slug as keyof typeof blogPosts]
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = blogPosts[slug as keyof typeof blogPosts]
 
   if (!post) {
     notFound()
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navigation />
 
       {/* Back Button */}
@@ -148,7 +149,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <Link href="/blog">
           <Button
             variant="outline"
-            className="border-gray-300 text-gray-700 hover:border-red-600 hover:text-red-600 bg-transparent"
+            className="border-input text-foreground/80 hover:border-brand hover:text-brand bg-transparent"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Blog
@@ -159,11 +160,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       {/* Article Header */}
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <header className="mb-8">
-          <Badge className="bg-red-100 text-red-600 mb-4">{post.category}</Badge>
-          <h1 className="font-heading font-black text-3xl lg:text-5xl text-black mb-6 leading-tight">{post.title}</h1>
-          <p className="text-xl text-gray-600 mb-8 leading-relaxed">{post.excerpt}</p>
+          <Badge className="bg-brand/10 text-brand border-brand/20 mb-4">{post.category}</Badge>
+          <h1 className="font-heading font-black text-3xl lg:text-5xl text-foreground mb-6 leading-tight">{post.title}</h1>
+          <p className="text-xl text-muted-foreground mb-8 leading-relaxed">{post.excerpt}</p>
 
-          <div className="flex items-center justify-between border-t border-b border-gray-200 py-6">
+          <div className="flex items-center justify-between border-t border-b border-border py-6">
             <div className="flex items-center gap-4">
               <img
                 src={`/placeholder.svg?height=60&width=60&query=${post.authorImage}`}
@@ -171,11 +172,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <div className="font-semibold text-black">{post.author}</div>
-                <div className="text-sm text-gray-600">{post.authorRole}</div>
+                <div className="font-semibold text-foreground">{post.author}</div>
+                <div className="text-sm text-muted-foreground">{post.authorRole}</div>
               </div>
             </div>
-            <div className="flex items-center gap-6 text-sm text-gray-600">
+            <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
                 {new Date(post.publishDate).toLocaleDateString()}
@@ -198,26 +199,29 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
 
         {/* Article Content */}
-        <div className="prose prose-lg max-w-none mb-12" dangerouslySetInnerHTML={{ __html: post.content }} />
+        <div
+          className="prose prose-lg max-w-none mb-12 dark:prose-invert prose-headings:text-foreground prose-p:text-foreground/80 prose-li:text-foreground/80 prose-strong:text-foreground"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-8">
           {post.tags.map((tag) => (
-            <Badge key={tag} variant="outline" className="border-gray-300 text-gray-600">
+            <Badge key={tag} variant="outline" className="border-border text-muted-foreground">
               {tag}
             </Badge>
           ))}
         </div>
 
         {/* Share Buttons */}
-        <div className="border-t border-gray-200 pt-8 mb-12">
+        <div className="border-t border-border pt-8 mb-12">
           <div className="flex items-center gap-4">
-            <span className="font-semibold text-gray-700">Share this article:</span>
+            <span className="font-semibold text-foreground/80">Share this article:</span>
             <div className="flex gap-2">
               <Button
                 size="sm"
                 variant="outline"
-                className="border-gray-300 text-gray-700 hover:border-blue-500 hover:text-blue-500 bg-transparent"
+                className="border-input text-foreground/80 hover:border-blue-500 hover:text-blue-500 bg-transparent"
               >
                 <Twitter className="h-4 w-4 mr-2" />
                 Twitter
@@ -225,7 +229,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <Button
                 size="sm"
                 variant="outline"
-                className="border-gray-300 text-gray-700 hover:border-blue-600 hover:text-blue-600 bg-transparent"
+                className="border-input text-foreground/80 hover:border-blue-600 hover:text-blue-600 bg-transparent"
               >
                 <Linkedin className="h-4 w-4 mr-2" />
                 LinkedIn
@@ -233,7 +237,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <Button
                 size="sm"
                 variant="outline"
-                className="border-gray-300 text-gray-700 hover:border-blue-700 hover:text-blue-700 bg-transparent"
+                className="border-input text-foreground/80 hover:border-blue-700 hover:text-blue-700 bg-transparent"
               >
                 <Facebook className="h-4 w-4 mr-2" />
                 Facebook
@@ -241,7 +245,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <Button
                 size="sm"
                 variant="outline"
-                className="border-gray-300 text-gray-700 hover:border-gray-500 hover:text-gray-500 bg-transparent"
+                className="border-input text-foreground/80 hover:border-gray-500 hover:text-gray-500 bg-transparent"
               >
                 <LinkIcon className="h-4 w-4 mr-2" />
                 Copy Link
@@ -252,12 +256,12 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       </article>
 
       {/* Related Posts */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-heading font-bold text-2xl text-black mb-8">Related Articles</h2>
+          <h2 className="font-heading font-bold text-2xl text-foreground mb-8">Related Articles</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {relatedPosts.map((relatedPost, index) => (
-              <Card key={index} className="group overflow-hidden hover:shadow-lg transition-shadow">
+              <Card key={index} className="group overflow-hidden border-border hover:border-brand/40 transition-all hover-lift">
                 <div className="aspect-video overflow-hidden">
                   <img
                     src={`/placeholder.svg?height=250&width=400&query=${relatedPost.image}`}
@@ -266,15 +270,15 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   />
                 </div>
                 <CardContent className="p-6">
-                  <Badge className="bg-red-100 text-red-600 mb-3">{relatedPost.category}</Badge>
-                  <h3 className="font-heading font-bold text-lg mb-4 group-hover:text-red-600 transition-colors">
+                  <Badge className="bg-brand/10 text-brand border-brand/20 mb-3">{relatedPost.category}</Badge>
+                  <h3 className="font-heading font-bold text-lg mb-4 group-hover:text-brand transition-colors">
                     {relatedPost.title}
                   </h3>
                   <Link href={`/blog/${relatedPost.slug}`}>
                     <Button
                       variant="outline"
                       size="sm"
-                      className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white bg-transparent"
+                      className="border-brand text-brand hover:bg-brand hover:text-brand-foreground bg-transparent"
                     >
                       Read More
                     </Button>
@@ -287,13 +291,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-16 bg-red-600 text-white">
+      <section className="py-16 bg-gradient-to-br from-brand to-brand-darker text-brand-foreground">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-heading font-bold text-3xl lg:text-4xl mb-4">Stay Informed</h2>
-          <p className="text-xl mb-8 text-red-100">
+          <p className="text-xl mb-8 text-brand-foreground/80">
             Subscribe to our newsletter for more insights like this delivered to your inbox.
           </p>
-          <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100">
+          <Button size="lg" className="bg-slate-900 text-white hover:bg-slate-800">
             Subscribe Now
           </Button>
         </div>
